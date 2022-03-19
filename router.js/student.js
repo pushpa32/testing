@@ -8,7 +8,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  res.send("This is student POST");
+  /* res.send("This is student POST"); */
+  console.log(req.body);
 });
 
 module.exports = router;

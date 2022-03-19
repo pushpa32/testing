@@ -4,6 +4,11 @@ const app = express();
 const stdRouter = require("./router.js/student");
 const facultyRouter = require("./router.js/faculty");
 const mongoose = require("./connection");
+const bodyParser = require("body-parser");
+
+/* middleware */
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /* Mongoose connection eroor */
 mongoose.connection.on("error", (err) => {
