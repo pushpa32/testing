@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
+var mongodb = require("mongodb");
+var ObjectId = require("mongodb").ObjectId;
 const router = express.Router();
-const register = require("../controls/control");
+const { register, del } = require("../controls/control");
 const Student = require("../model/student");
 
 const path = "./public";
@@ -18,6 +20,18 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/register", register);
+//router.post("/:id", del);
+router.post("/:id", (req, res, next) => {
+  var delete_id = req.params.id; //your id
+  Student.deleteOne({ _id: delete_id })
+    .then((result) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 router.get("/studentlist", (req, res) => {
   //res.sendFile("studenlist.html", { root: path });
   Student.find()
@@ -30,8 +44,11 @@ router.get("/studentlist", (req, res) => {
 });
 
 /* DELETE */
+router.get("/:id", (req, res, next) => {
+  res.sendFile("delete.html", { root: path });
+});
 
-/* router.get("/", (req, res) => {
+/*router.get("/", (req, res) => {
   res.sendFile("index.html", { root: path });
 }); */
 

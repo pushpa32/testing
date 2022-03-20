@@ -1,6 +1,5 @@
 const res = require("express/lib/response");
 const mongoose = require("mongoose");
-const student = require("../model/student");
 const Student = require("../model/student");
 
 /* REGISTRATION */
@@ -27,4 +26,14 @@ const register = (req, res) => {
     });
 };
 
-module.exports = register;
+const del = (req, res, next) => {
+  Student.remove({ _id: req.params.this.id })
+    .then((result) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      res.send("deletion error");
+    });
+};
+
+module.exports = { register, del };
