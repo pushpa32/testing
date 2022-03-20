@@ -19,6 +19,7 @@ router.get("/login", (req, res) => {
 
 router.post("/register", register);
 router.get("/studentlist", (req, res) => {
+  //res.sendFile("studenlist.html", { root: path });
   Student.find()
     .then((result) => {
       res.status(200).json({ Student_Info: result });
@@ -27,6 +28,8 @@ router.get("/studentlist", (req, res) => {
       console.log(err);
     });
 });
+
+/* DELETE */
 
 /* router.get("/", (req, res) => {
   res.sendFile("index.html", { root: path });
