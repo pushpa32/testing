@@ -5,7 +5,7 @@ dotenv.config({ path: "./config.env" });
 
 mongoose.connect(
   process.env.DATABASE,
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useUnifiedTopology: true }
   //"mongodb+srv://pshady:PShady32@first.kg2ud.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
 
